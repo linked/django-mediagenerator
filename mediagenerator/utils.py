@@ -89,7 +89,7 @@ def get_media_url_mapping():
 
 def media_urls(key, refresh=False):
     if media_settings.MEDIA_DEV_MODE:
-        if refresh:
+        if refresh or not key in _generated_names:
             _refresh_dev_names()
         return [DEV_MEDIA_URL + url for url in _generated_names[key]]
     return [PRODUCTION_MEDIA_URL + get_production_mapping()[key]]
